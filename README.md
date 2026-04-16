@@ -11,4 +11,4 @@ Simple browser-based TRPG world building tool for GMs.
 - Save data locally in the browser
 - Export and import JSON snapshots
 
-- 
+© 2026 Look2ed All rights reserved under CC BY-NC 4.0
