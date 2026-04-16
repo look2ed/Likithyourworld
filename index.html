@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRPG World Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">GM Toolkit</p>
+      <h1>TRPG World Builder</h1>
+      <p class="header-copy">Shape places, people, events, relationships, and timeline beats in one working board.</p>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="seed-demo-btn" class="secondary-btn">Load Demo</button>
+      <button type="button" id="export-btn" class="secondary-btn">Export JSON</button>
+      <label class="import-btn secondary-btn">
+        Import JSON
+        <input type="file" id="import-input" accept="application/json">
+      </label>
+      <button type="button" id="reset-btn" class="danger-btn">Reset</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="main-stage">
+      <section class="toolbar-row">
+        <button type="button" id="open-entry-modal-btn" class="primary-btn">+ Add New Entry</button>
+        <button type="button" id="open-timeline-modal-btn" class="secondary-btn">+ Add Timeline Beat</button>
+      </section>
+
+      <section class="panel tab-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>World Workspace</h2>
+            <p class="panel-note">Switch between the board, relationship map, and timeline without leaving the whiteboard.</p>
+          </div>
+          <div class="tab-strip" role="tablist" aria-label="World workspace tabs">
+            <button type="button" id="workspace-tab-board" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="workspace-panel-board">World Board</button>
+            <button type="button" id="workspace-tab-relationship" class="tab-btn" role="tab" aria-selected="false" aria-controls="workspace-panel-relationship">Relationship</button>
+            <button type="button" id="workspace-tab-timeline" class="tab-btn" role="tab" aria-selected="false" aria-controls="workspace-panel-timeline">Timeline</button>
+          </div>
+        </div>
+
+        <section id="workspace-panel-board" class="details-panel is-active" role="tabpanel" aria-labelledby="workspace-tab-board">
+          <div class="panel-heading inner-panel-heading">
+            <h2>Story Graph</h2>
+            <div class="legend">
+              <span class="chip chip-place">Place</span>
+              <span class="chip chip-person">Person</span>
+              <span class="chip chip-event">Event</span>
+              <span class="chip chip-faction">Faction</span>
+              <span class="chip chip-object">Object</span>
+            </div>
+          </div>
+          <div id="entry-grid" class="entry-grid"></div>
+        </section>
+
+        <section id="workspace-panel-relationship" class="details-panel hidden" role="tabpanel" aria-labelledby="workspace-tab-relationship">
+          <div class="panel-heading inner-panel-heading">
+            <div>
+              <h2>Relationships</h2>
+              <p class="panel-note">Track NPC ties, rivalries, loyalties, and secrets.</p>
+            </div>
+          </div>
+          <div id="relationship-list" class="relationship-list"></div>
+        </section>
+
+        <section id="workspace-panel-timeline" class="details-panel hidden" role="tabpanel" aria-labelledby="workspace-tab-timeline">
+          <div class="panel-heading inner-panel-heading">
+            <div>
+              <h2>Timeline</h2>
+              <p class="panel-note">Order the beats that move your campaign forward.</p>
+            </div>
+          </div>
+          <div id="timeline-list" class="timeline-list"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <template id="entry-card-template">
+    <article class="entry-card">
+      <div class="entry-card-head">
+        <span class="entry-tag"></span>
+        <button type="button" class="icon-btn remove-entry-btn" aria-label="Remove entry">×</button>
+      </div>
+      <h3 class="entry-title"></h3>
+      <p class="entry-summary"></p>
+      <p class="entry-hook"></p>
+      <div class="entry-meta">
+        <span class="meta-count entry-connection-count"></span>
+      </div>
+      <div class="entry-connections"></div>
+    </article>
+  </template>
+
+  <template id="relationship-item-template">
+    <article class="relationship-item">
+      <div>
+        <p class="relationship-title"></p>
+        <p class="relationship-meta"></p>
+      </div>
+      <button type="button" class="icon-btn remove-connection-btn" aria-label="Remove connection">×</button>
+    </article>
+  </template>
+
+  <template id="timeline-item-template">
+    <article class="timeline-item">
+      <div class="timeline-top">
+        <div>
+          <p class="timeline-era"></p>
+          <h3 class="timeline-title"></h3>
+        </div>
+        <button type="button" class="icon-btn remove-timeline-btn" aria-label="Remove timeline beat">×</button>
+      </div>
+      <p class="timeline-linked"></p>
+      <p class="timeline-notes"></p>
+    </article>
+  </template>
+
+  <div id="connection-modal" class="modal-shell hidden" aria-hidden="true">
+    <div id="connection-modal-backdrop" class="modal-backdrop"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="connection-modal-title">
+      <div class="panel-heading modal-heading">
+        <h2 id="connection-modal-title">Create Connection</h2>
+        <button type="button" id="close-connection-modal" class="icon-btn" aria-label="Close create connection popup">×</button>
+      </div>
+      <p id="connection-modal-copy" class="panel-note"></p>
+      <form id="connection-modal-form" class="stack-form">
+        <label>
+          <span>Relationship</span>
+          <input type="text" id="modal-connection-label" placeholder="Protects / Betrayed / Lives in" required>
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="primary-btn">Connect</button>
+          <button type="button" id="cancel-connection-modal" class="secondary-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="entry-modal" class="modal-shell hidden" aria-hidden="true">
+    <div id="entry-modal-backdrop" class="modal-backdrop"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="entry-modal-title">
+      <div class="panel-heading modal-heading">
+        <h2 id="entry-modal-title">Add New Entry</h2>
+        <button type="button" id="close-entry-modal" class="icon-btn" aria-label="Close add entry popup">×</button>
+      </div>
+      <form id="entry-form" class="stack-form">
+        <label>
+          <span>Name</span>
+          <input type="text" id="entry-name" required placeholder="Whispering Port">
+        </label>
+        <label>
+          <span>Tag</span>
+          <select id="entry-tag">
+            <option value="place">Place</option>
+            <option value="person">Person</option>
+            <option value="event">Event</option>
+            <option value="faction">Faction</option>
+            <option value="object">Object</option>
+          </select>
+        </label>
+        <label>
+          <span>Summary</span>
+          <textarea id="entry-summary" rows="4" placeholder="Why this matters in the story"></textarea>
+        </label>
+        <label>
+          <span>Story Hook</span>
+          <textarea id="entry-hook" rows="3" placeholder="What can pull players in?"></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="primary-btn">Add Entry</button>
+          <button type="button" id="cancel-entry-modal" class="secondary-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="timeline-modal" class="modal-shell hidden" aria-hidden="true">
+    <div id="timeline-modal-backdrop" class="modal-backdrop"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="timeline-modal-title">
+      <div class="panel-heading modal-heading">
+        <h2 id="timeline-modal-title">Add Timeline Beat</h2>
+        <button type="button" id="close-timeline-modal" class="icon-btn" aria-label="Close add timeline popup">×</button>
+      </div>
+      <form id="timeline-form" class="stack-form">
+        <label>
+          <span>Label</span>
+          <input type="text" id="timeline-title" required placeholder="The bridge collapses">
+        </label>
+        <label>
+          <span>Era / Date</span>
+          <input type="text" id="timeline-era" placeholder="Session 3 / Year 412">
+        </label>
+        <label>
+          <span>Linked Entry</span>
+          <select id="timeline-entry">
+            <option value="">None</option>
+          </select>
+        </label>
+        <label>
+          <span>Notes</span>
+          <textarea id="timeline-notes" rows="3" placeholder="What changes because of this beat?"></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="primary-btn">Add Timeline Beat</button>
+          <button type="button" id="cancel-timeline-modal" class="secondary-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
