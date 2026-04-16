@@ -1,0 +1,32 @@
+Copyright (c) 2026 Look2ed
+
+Permission is granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to:
+	•	Use the Software for personal and non-commercial purposes
+	•	Modify and adapt the Software
+
+Under the following conditions:
+	1.	Attribution Required
+      You must give appropriate credit to the original author (Look2ed).
+	2.	Non-Commercial Use Only
+      You may not use the Software for commercial purposes, including selling, licensing, or monetizing the Software in any form without explicit permission.
+	3.	No Sublicensing
+      You may not sublicense, relicense, or redistribute the Software under a different license.
+	4.	Redistribution
+      Redistribution is allowed only if this license and copyright notice are included.
+
+อนุญาตให้บุคคลใด ๆ ใช้งานซอฟต์แวร์นี้ได้โดยไม่มีค่าใช้จ่าย และสามารถแก้ไขหรือดัดแปลงได้
+
+ภายใต้เงื่อนไขดังต่อไปนี้:
+	1.	ต้องให้เครดิต
+      ต้องระบุชื่อผู้พัฒนา (Look2ed) อย่างเหมาะสม
+	2.	ห้ามใช้เชิงพาณิชย์
+      ห้ามนำซอฟต์แวร์ไปใช้เพื่อการค้า ขาย หรือสร้างรายได้โดยไม่ได้รับอนุญาตจากผู้พัฒนา
+	3.	ห้ามให้สิทธิช่วงต่อห้ามเปลี่ยน license หรือแจกจ่ายภายใต้ license อื่น
+	4.	การแจกจ่าย หากมีการแจกจ่าย ต้องแนบ license นี้ไปด้วยเสมอ
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY.
