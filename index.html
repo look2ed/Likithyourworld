@@ -28,7 +28,7 @@
     <section class="main-stage">
       <section class="toolbar-row">
         <button type="button" id="open-entry-modal-btn" class="primary-btn">+ เพิ่มข้อมูลใหม่</button>
-        <button type="button" id="open-relationship-person-modal-btn" class="primary-btn hidden">+ เพิ่มบุคคล</button>
+        <button type="button" id="open-relationship-person-modal-btn" class="primary-btn hidden">+ เพิ่มตัวละคร</button>
         <button type="button" id="open-timeline-modal-btn" class="primary-btn">+ เพิ่มเหตุการณ์</button>
       </section>
 
@@ -49,7 +49,7 @@
             </div>
             <div class="legend" id="entry-filter-legend">
               <button type="button" class="chip chip-place legend-filter-btn" data-filter-tag="place">สถานที่</button>
-              <button type="button" class="chip chip-person legend-filter-btn" data-filter-tag="person">บุคคล</button>
+              <button type="button" class="chip chip-person legend-filter-btn" data-filter-tag="person">ตัวละคร</button>
               <button type="button" class="chip chip-event legend-filter-btn" data-filter-tag="event">เหตุการณ์</button>
               <button type="button" class="chip chip-faction legend-filter-btn" data-filter-tag="faction">ฝ่าย/สังกัด</button>
               <button type="button" class="chip chip-object legend-filter-btn" data-filter-tag="object">วัตถุ</button>
@@ -63,11 +63,11 @@
           <div class="panel-heading inner-panel-heading">
             <div>
               <h2>ความสัมพันธ์</h2>
-              <p class="panel-note">ความสัมพันธ์ระหว่างบุคคลกับบุคคล</p>
+              <p class="panel-note">ความสัมพันธ์ระหว่างตัวละคร</p>
             </div>
           </div>
           <div id="relationship-empty-state" class="empty-state hidden"></div>
-          <div id="relationship-board" class="relationship-board hidden" aria-label="กระดานความสัมพันธ์ของบุคคล">
+          <div id="relationship-board" class="relationship-board hidden" aria-label="กระดานความสัมพันธ์ระหว่างตัวละคร">
             <svg id="relationship-lines" class="relationship-lines" aria-hidden="true"></svg>
             <div id="relationship-nodes" class="relationship-nodes"></div>
             <div id="relationship-line-tooltip" class="relationship-line-tooltip hidden"></div>
@@ -203,7 +203,7 @@
           <span>ประเภท</span>
           <select id="entry-tag">
             <option value="place">สถานที่</option>
-            <option value="person">บุคคล</option>
+            <option value="person">ตัวละคร</option>
             <option value="event">เหตุการณ์</option>
             <option value="faction">ฝ่าย/สังกัด</option>
             <option value="object">วัตถุ</option>
