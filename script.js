@@ -1,7 +1,7 @@
 const STORAGE_KEY = "trpg-world-builder-v1";
 const TAG_LABELS = {
   place: "สถานที่",
-  person: "บุคคล",
+  person: "ตัวละคร",
   event: "เหตุการณ์",
   faction: "ฝ่าย/สังกัด",
   object: "วัตถุ",
@@ -458,7 +458,7 @@ function renderRelationships() {
   if (!personEntries.length) {
     relationshipBoard.classList.add("hidden");
     relationshipEmptyState.classList.remove("hidden");
-    relationshipEmptyState.textContent = "ยังไม่มีข้อมูลบุคคลสำหรับแสดงบนกระดานความสัมพันธ์";
+    relationshipEmptyState.textContent = "ยังไม่มีตัวละครเพื่อแสดงบนกระดานความสัมพันธ์";
     return;
   }
 
