@@ -1,5 +1,5 @@
 const STORAGE_KEY = "trpg-world-builder-v1";
-let currentLanguage = "th"; // Default to Thai
+let currentLanguage = localStorage.getItem("trpg-language") || "th"; // Default to Thai
 
 const TRANSLATIONS = {
   th: {
@@ -224,7 +224,7 @@ function updateUILanguage() {
   if (removeConnectionBtn) removeConnectionBtn.setAttribute("aria-label", t("delete"));
   
   const swapConnectionBtn = document.querySelector(".swap-connection-btn");
-  if (swapConnectionBtn) swapConnectionBtn.textContent = t("สลับ");
+  if (swapConnectionBtn) swapConnectionBtn.textContent = t("switch");
   
   const closeConnectionBtn = document.querySelector(".close-connection-modal");
   if (closeConnectionBtn) closeConnectionBtn.setAttribute("aria-label", t("close"));
@@ -1248,8 +1248,8 @@ function createConnection(from, to, label, stylePayload = getDefaultConnectionSt
 function prepareEntryCreate(options = {}) {
   editorState.entryId = "";
   entryModalState.lockedTag = options.lockedTag || "";
-  document.getElementById("entry-modal-title").textContent = t("เพิ่มรายการ");
-  document.querySelector('#entry-form button[type="submit"]').textContent = t("เพิ่มรายการ");
+  document.getElementById("entry-modal-title").textContent = t("add-entry");
+  document.querySelector('#entry-form button[type="submit"]').textContent = t("add-entry");
   entryTagSelect.value = entryModalState.lockedTag || "place";
   entryTagSelect.disabled = Boolean(entryModalState.lockedTag);
   entryHighlightedInput.checked = false;

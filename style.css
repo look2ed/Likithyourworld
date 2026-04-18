@@ -49,6 +49,64 @@ select {
   padding: 28px 32px 20px;
 }
 
+.header-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.header-logo {
+  flex-shrink: 0;
+}
+
+.logo-image {
+  height: 100px;
+  width: auto;
+  display: block;
+}
+
+.header-text {
+  flex: 1;
+}
+
+.header-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+  min-width: 300px;
+}
+
+.language-switcher {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.lang-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+  border-color: var(--brand);
+  color: var(--ink);
+}
+
+.lang-btn.active {
+  background: var(--brand);
+  color: white;
+  border-color: var(--brand);
+}
+
 .eyebrow {
   margin: 0 0 4px;
   color: var(--brand);
@@ -833,4 +891,84 @@ textarea {
   h1 {
     font-size: 31px;
   }
+
+  .header-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-side {
+    min-width: auto;
+    align-items: stretch;
+  }
+
+  .project-name-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .logo-image {
+    height: 80px;
+  }
+}
+
+/* Line style options */
+.line-style-options {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.line-style-option {
+  cursor: pointer;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  padding: 4px;
+  transition: all 0.2s ease;
+}
+
+.line-style-option:hover {
+  border-color: var(--brand);
+}
+
+.line-style-option.selected {
+  border-color: var(--brand);
+  background-color: var(--brand-soft);
+}
+
+.line-style-option svg {
+  display: block;
+}
+
+/* Project name field */
+.project-name-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-name-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.project-name-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 14px;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.project-name-input:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 2px var(--brand-soft);
 }

@@ -8,19 +8,34 @@
 </head>
 <body>
   <header class="app-header">
-    <div>
-      <p class="eyebrow">GM Toolkit</p>
-      <h1>'Likith' TRPG World Builder</h1>
-      <p class="header-copy">ลิขิตเรื่องราว เพื่อสร้างโลกในจินตนาการของคุณ</p>
+    <div class="header-main">
+      <div class="header-logo">
+        <img src="Likith_logo.png" alt="Likith Logo" class="logo-image">
+      </div>
+      <div class="header-text">
+        <p class="eyebrow">GM Toolkit</p>
+        <h1>TRPG World Builder</h1>
+        <p class="header-copy">ลิขิตเรื่องราว เพื่อสร้างโลกในจินตนาการของคุณ</p>
+      </div>
     </div>
-    <div class="header-actions">
-      <button type="button" id="seed-demo-btn" class="secondary-btn">Load Demo</button>
-      <button type="button" id="export-btn" class="secondary-btn">Export</button>
-      <label class="import-btn secondary-btn">
-        Import
-        <input type="file" id="import-input" accept="application/json">
-      </label>
-      <button type="button" id="reset-btn" class="danger-btn">Clear</button>
+    <div class="header-side">
+      <div class="language-switcher">
+        <button type="button" id="lang-th" class="lang-btn active">TH</button>
+        <button type="button" id="lang-en" class="lang-btn" style="display:none">EN</button>
+      </div>
+      <div class="project-name-container">
+        <label for="project-name" class="project-name-label">Project Name:</label>
+        <input type="text" id="project-name" class="project-name-input" placeholder="Enter project name">
+      </div>
+      <div class="header-actions">
+        <button type="button" id="seed-demo-btn" class="secondary-btn">Load Demo</button>
+        <button type="button" id="export-btn" class="secondary-btn">Export</button>
+        <label class="import-btn secondary-btn">
+          Import
+          <input type="file" id="import-input" accept="application/json">
+        </label>
+        <button type="button" id="reset-btn" class="danger-btn">Clear</button>
+      </div>
     </div>
   </header>
 
@@ -35,9 +50,9 @@
       <section class="panel tab-panel">
         <div class="panel-heading">
           <div class="tab-strip" role="tablist" aria-label="หน้ากระดานหลัก">
-            <button type="button" id="workspace-tab-board" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="workspace-panel-board">Main board</button>
+            <button type="button" id="workspace-tab-board" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="workspace-panel-board">หน้าหลัก</button>
             <button type="button" id="workspace-tab-relationship" class="tab-btn" role="tab" aria-selected="false" aria-controls="workspace-panel-relationship">ความสัมพันธ์</button>
-            <button type="button" id="workspace-tab-timeline" class="tab-btn" role="tab" aria-selected="false" aria-controls="workspace-panel-timeline">Timeline</button>
+            <button type="button" id="workspace-tab-timeline" class="tab-btn" role="tab" aria-selected="false" aria-controls="workspace-panel-timeline">ลำดับเหตุการณ์</button>
           </div>
         </div>
 
@@ -45,7 +60,7 @@
           <div class="panel-heading inner-panel-heading">
             <div>
               <h2>แผนผังเรื่องราว</h2>
-              <p id="entry-filter-note" class="panel-note">กด tag เพื่อกรอง entry ตามหมวดหมู่</p>
+              <p id="entry-filter-note" class="panel-note">กด tag เพื่อกรองตามหมวดหมู่</p>
             </div>
             <div class="legend" id="entry-filter-legend">
               <button type="button" class="chip chip-place legend-filter-btn" data-filter-tag="place">สถานที่</button>
@@ -77,7 +92,7 @@
         <section id="workspace-panel-timeline" class="details-panel hidden" role="tabpanel" aria-labelledby="workspace-tab-timeline">
           <div class="panel-heading inner-panel-heading">
             <div>
-              <h2>Timeline</h2>
+              <h2>ลำดับเหตุการณ์</h2>
               <p class="panel-note">ลำดับเหตุการณ์สำคัญ</p>
             </div>
           </div>
@@ -172,9 +187,9 @@
           <label>
             <span>ลักษณะเส้น</span>
             <select id="modal-connection-line-style">
-              <option value="solid">เส้นทึบ</option>
-              <option value="dashed">เส้นประ</option>
-              <option value="dotted">เส้นจุด</option>
+              <option value="solid">________________</option>
+              <option value="dashed">- - - - - - - - -</option>
+              <option value="dotted">-. -. -. -. -. -. -.</option>
             </select>
           </label>
         </div>
@@ -212,29 +227,29 @@
         </label>
         <div id="person-fields" class="stack-form hidden">
           <label>
-            <span>เพศ</span>
+            <span>เพศ (ไม่จำเป็นต้องระบุ)</span>
             <input type="text" id="person-gender" placeholder="ระบุเพศ">
           </label>
           <label>
-            <span>อายุ</span>
+            <span>อายุ (ไม่จำเป็นต้องระบุ)</span>
             <input type="text" id="person-age" placeholder="ระบุอายุ">
           </label>
           <label>
-            <span>เผ่าพันธุ์</span>
+            <span>เผ่าพันธุ์ (ไม่จำเป็นต้องระบุ)</span>
             <input type="text" id="person-species" placeholder="ระบุเผ่าพันธุ์">
           </label>
         </div>
         <div id="event-fields" class="stack-form hidden">
           <label>
-            <span>Session</span>
+            <span>Session (ไม่จำเป็นต้องระบุ)</span>
             <input type="text" id="event-session" inputmode="numeric" placeholder="เช่น 3">
           </label>
           <label>
-            <span>วันที่</span>
+            <span>วันที่ (ไม่จำเป็นต้องระบุ)</span>
             <input type="text" id="event-date" inputmode="numeric" placeholder="เช่น 14">
           </label>
           <label>
-            <span>ปี</span>
+            <span>ปี (ไม่จำเป็นต้องระบุ)</span>
             <input type="text" id="event-year" inputmode="numeric" placeholder="เช่น 412">
           </label>
         </div>
@@ -254,7 +269,7 @@
           <div class="panel-heading editor-subsection-heading">
             <div>
               <h3>ความเชื่อมโยง</h3>
-              <p class="panel-note">แก้ไขหรือลบความเชื่อมโยงของ entry นี้ได้จากที่นี่</p>
+              <p class="panel-note">แก้ไขหรือลบความเชื่อมโยงได้จากที่นี่</p>
             </div>
           </div>
           <div id="entry-connections-editor-list" class="relationship-list"></div>
